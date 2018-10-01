@@ -2,52 +2,47 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 
-class App extends Component {
+class App extends Component { 
   render() {
     return (
       <div className="App">
-          <h1>Redux Tutorial </h1>
-          <span>Age : {this.props.age}</span>
-          <br/>
-          <br/>
-          <span><button  className="ageUp" onClick={this.props.onAgeUp}>Age Up</button></span>
-          { ` | `}
-          <span><button  className="ageDown" onClick={this.props.onAgeDown}>Age Down</button></span>
-          <hr/>
-          <div>
-            History
-          </div>
-          <div>
-              {
-                this.props.history.map(item => (
-                  <li 
-                    className="historyItem"  
-                    key={item.id}
-                    onClick={ () => this.props.onDeleteItem(item.id)}
-                    >
-                    {item.age}
-                  </li>
-                ))
-              }
+          <h1>Redux Tutorial (Multiple Reducers) </h1>
+          <div className='col'>
+            <div>
+              <span>A:</span>
+              <span>{this.props.a}</span>
+            </div>
+            <div>
+              <button onClick={ () => this.props.updateA(this.props.b) }>Update A</button>
+            </div>
           </div>
 
+          <div className='col'>
+            <div>
+              <span>B:</span>
+              <span>{this.props.b}</span>
+            </div>
+            <div>
+              <button onClick={ () => this.props.updateB(this.props.a) }>Update B</button>
+            </div>
+          </div>
+          
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-     age : state.age,
-     history : state.history
-  };
+    a: state.rA.a,
+    b: state.rB.b
+  }; 
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAgeUp : () => dispatch({type: 'AGE_UP', value : 1}),
-    onAgeDown : () => dispatch({type: 'AGE_DOWN', value : 1}),
-    onDeleteItem : (id) => dispatch({type: 'DEL_ITEM', id : id})
+   updateA : b => dispatch({type: 'UPDATE_A', b:b}),
+   updateB : a => dispatch({type: 'UPDATE_B', a:a})
   }
 };
 

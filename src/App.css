@@ -26,3 +26,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+ageUp,
+.ageDown {
+  margin: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.historyItem {
+  list-style-type: none;
+  border: 1px solid #f9e5ad;
+  margin: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #f7e8bc70;
+}

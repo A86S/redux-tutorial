@@ -10,16 +10,16 @@ const reducer = (state = initialState , action) => {
     const defaultRedux = 10;
     switch (action.type) {
         
-        case 'ADDITION':
+        case 'ADDITION_ASYNC':
             return {
                 ...state, 
-                result : parseInt(action.payload.num1, defaultRedux) + parseInt(action.payload.num2, defaultRedux),
+                result : parseInt(action.num1, defaultRedux) + parseInt(action.num2, defaultRedux),
                 isLoading : false
             }
-        case 'SUBSTRACTION':
+        case 'SUBSTRACTION_ASYNC':
             return {
                 ...state,
-                result : parseInt(action.payload.num1, defaultRedux) - parseInt(action.payload.num2, defaultRedux),
+                result : parseInt(action.num1, defaultRedux) - parseInt(action.num2, defaultRedux),
                 isLoading : false
             }
         case 'LOADING' : 

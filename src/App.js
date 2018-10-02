@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import * as actionCreator from './actions/action';
 
 class App extends Component {
 
   render() {
     return (
       <div className="App">
-        <h1>Redux Tutorial (Redux thunk) </h1>
+        <h1>Redux Tutorial (Redux Saga) </h1>
         <div className='col'>
           <div>
             <span>Number 1</span>
@@ -50,8 +49,8 @@ const mapsStateToProps = (state) => {
 
 const mapDispathcToProps = (dispatch) => {
   return {
-        addition: (num1, num2) => dispatch(actionCreator.actionAddition(num1, num2)),
-        substraction: (num1, num2) => dispatch(actionCreator.actionSubstration(num1, num2))
+        addition: (num1, num2) => dispatch({type: 'ADDITION', num1, num2}),
+        substraction: (num1, num2) => dispatch({type: 'SUBSTRACTION', num1, num2})
     }
 };
 

@@ -1,31 +1,36 @@
 const initialState = {
-    age : 21,
-    history : []
+    num1: 1,
+    num2: 1,
+    result: 2,
+    isLoading : false
 }
 
-const reducer = (state=initialState, action) => {
-    const newState = { ...state };
-    switch(action.type){
-        case 'AGE_UP':
-            return{
-                ...state,
-                age : state.age + action.value,
-                history : state.history.concat({id: Math.random(), age : state.age + action.value})
-            }
-        case 'AGE_DOWN':
-            return{
-                ...state,
-                age : state.age - action.value,
-                history : state.history.concat({id: Math.random(), age : state.age - action.value})
-            }
-        case 'DEL_ITEM':
-            return{
+const reducer = (state = initialState , action) => {
+    //console.log('reducer '+ JSON.stringify(action));
+    const defaultRedux = 10;
+    switch (action.type) {
+        
+        case 'ADDITION':
+            return {
                 ...state, 
-                history : newState.history.filter( item => item.id !== action.id)
+                result : parseInt(action.payload.num1, defaultRedux) + parseInt(action.payload.num2, defaultRedux),
+                isLoading : false
             }
+        case 'SUBSTRACTION':
+            return {
+                ...state,
+                result : parseInt(action.payload.num1, defaultRedux) - parseInt(action.payload.num2, defaultRedux),
+                isLoading : false
+            }
+        case 'LOADING' : 
+           return {...state, isLoading: true}
         default:
-            return state;
+            return {
+                ...state
+            }
     }
+
+
 }
 
 export default reducer;
